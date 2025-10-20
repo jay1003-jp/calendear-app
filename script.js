@@ -1,38 +1,29 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>ゲームスタート画面</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <main class="hero">
-    <video
-      id="backgroundVideo"
-      class="hero__video"
-      src="download.MP4"
-      preload="auto"
-      muted
-      playsinline
-    ></video>
+const startButton = document.getElementById("startButton");
+const bgVideo = document.getElementById("bgVideo");
+const whiteout = document.getElementById("whiteout");
+const introScreen = document.getElementById("introScreen");
+const gameScreen = document.getElementById("gameScreen");
 
-    <div class="hero__overlay" id="overlay">
-      <header class="hero__header">
-        <h1 class="hero__title">今日のチャレンジへようこそ</h1>
-        <p class="hero__subtitle">扉の向こうに広がる冒険を始めましょう。</p>
-      </header>
+startButton.addEventListener("click", () => {
+  // 背景動画をリセットして再生（ホワイトアウト付きの完全版）
+  bgVideo.currentTime = 0;
+  bgVideo.play();
 
-      <div class="hero__buttons">
-        <button id="startGameButton" class="hero__button hero__button--primary">ゲーム開始</button>
-        <button id="infoButton" class="hero__button hero__button--ghost" type="button">遊び方</button>
-      </div>
+  // ボタンを非表示
+  startButton.classList.add("hidden");
 
-      <div class="hero__info" id="infoPanel">
-        <p>開始ボタンを押すとゲーム画面が展開されます。音量を確認して準備が整ったら冒険へ旅立ちましょう！</p>
-      </div>
-    </div>
-  </main>
+  // 動画の再生終了を監視
+  bgVideo.addEventListener("ended", () => {
+    // ホワイトアウト開始
+    whiteout.classList.remove("hidden");
+    whiteout.style.opacity = "1";
 
-  <script src="script.js"></script>
-</body>
-</html>
+    // 白フェードが終わったら次画面へ遷移
+    setTimeout(() => {
+      introScreen.classList.add("hidden");
+      whiteout.style.opacity = "0";
+      whiteout.classList.add("hidden");
+      gameScreen.classList.remove("hidden");
+    }, 2000); // 白フェード後2秒で切り替え
+  });
+});
