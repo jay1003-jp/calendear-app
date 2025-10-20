@@ -1,27 +1,28 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>日めくり扉ムービー</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="container">
-    <h1 id="title"></h1>
 
-    <div class="door-container" id="doorContainer">
-      <img id="door" src="images/door_closed.png" alt="扉" class="door">
-    </div>
-
-    <div class="video-container hidden" id="videoContainer">
-      <div class="photo-bg" id="photoBg"></div>
-      <video id="videoPlayer" controls></video>
-      <p id="message"></p>
-    </div>
-
-    <p id="lockedMessage" class="hidden">🔒 今日の動画はもう見ました。明日また開けよう！</p>
-  </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+ <!DOCTYPE html>
+ <html lang="ja">
+ <head>
+   <meta charset="UTF-8">
+   <title>日めくり扉ムービー</title>
+   <link rel="stylesheet" href="style.css">
+ </head>
+ <body>
+   <div class="container">
+     <h1 id="title"></h1>
+ 
+     <div class="door-container" id="doorContainer">
+       <img id="door" src="images/door_closed.png" alt="扉" class="door">
+     </div>
+ 
+     <div class="video-container hidden" id="videoContainer">
+-      <div class="photo-bg" id="photoBg"></div>
+       <video id="videoPlayer" controls></video>
+       <p id="message"></p>
+     </div>
+ 
+     <p id="lockedMessage" class="hidden">🔒 今日の動画はもう見ました。明日また開けよう！</p>
+   </div>
+ 
+   <script src="script.js"></script>
+ </body>
+ </html>
