@@ -2,27 +2,36 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>日めくりゲーム開始画面</title>
+  <title>今日のチャレンジ</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="intro-screen" id="introScreen">
-    <video id="bgVideo" autoplay muted loop playsinline>
-      <source src="download.mp4" type="video/mp4">
-    </video>
-    <div class="overlay">
-      <h1 class="title">ようこそ！</h1>
-      <button id="startButton">ゲーム開始</button>
+  <!-- 背景動画 -->
+  <video id="bgVideo" autoplay muted playsinline>
+    <source src="download.mp4" type="video/mp4">
+  </video>
+
+  <!-- オーバーレイ -->
+  <div class="overlay">
+    <h2 class="welcome">Welcome!</h2>
+    <h1>今日のチャレンジへようこそ</h1>
+    <p>扉の向こうに広がる冒険を始めましょう。</p>
+    <div class="button-group">
+      <button id="startButton" class="primary">🎮 ゲーム開始</button>
+      <button id="howToButton" class="secondary">❔ 遊び方</button>
     </div>
   </div>
 
-  <!-- ゲーム本編画面 -->
-  <div class="game-screen hidden" id="gameScreen">
-    <h2>次のステージへようこそ！</h2>
-    <p>ここにゲーム本編のUIや内容を追加します。</p>
-  </div>
+  <!-- ホワイトアウト用 -->
+  <div id="whiteout" class="whiteout hidden"></div>
 
-  <div class="whiteout hidden" id="whiteout"></div>
+  <!-- ポップアップ -->
+  <div id="popup" class="popup hidden">
+    <div class="popup-content">
+      <p>癒されていときはのぞいてみてね🌿</p>
+      <button id="closePopup">閉じる</button>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
