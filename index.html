@@ -1,34 +1,38 @@
- <!DOCTYPE html>
- <html lang="ja">
- <head>
-   <meta charset="UTF-8">
-   <title>日めくり扉ムービー</title>
-   <link rel="stylesheet" href="style.css">
- </head>
- <body>
-   <div class="container">
-     <h1 id="title"></h1>
- 
-     <div class="door-container" id="doorContainer">
-       <img id="door" src="images/door_closed.png" alt="扉" class="door">
-     </div>
- 
-     <div class="video-container hidden" id="videoContainer">
-       <div class="photo-bg" id="photoBg"></div>
-       <video id="videoPlayer" controls></video>
-       <p id="message"></p>
-     </div>
- 
-     <p id="lockedMessage" class="hidden">🔒 今日の動画はもう見ました。明日また開けよう！</p>
-+
-+    <section id="nextScreen" class="hidden">
-+      <h2>また明日お会いしましょう！</h2>
-+      <p>今日の動画は終了しました。次の扉が開くまでしばらくお待ちください。</p>
-+    </section>
-   </div>
- 
-+  <div id="whiteout" class="hidden"></div>
-+
-   <script src="script.js"></script>
- </body>
- </html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ゲームスタート画面</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="hero">
+    <video
+      id="backgroundVideo"
+      class="hero__video"
+      src="download.MP4"
+      preload="auto"
+      muted
+      playsinline
+    ></video>
+
+    <div class="hero__overlay" id="overlay">
+      <header class="hero__header">
+        <h1 class="hero__title">今日のチャレンジへようこそ</h1>
+        <p class="hero__subtitle">扉の向こうに広がる冒険を始めましょう。</p>
+      </header>
+
+      <div class="hero__buttons">
+        <button id="startGameButton" class="hero__button hero__button--primary">ゲーム開始</button>
+        <button id="infoButton" class="hero__button hero__button--ghost" type="button">遊び方</button>
+      </div>
+
+      <div class="hero__info" id="infoPanel">
+        <p>開始ボタンを押すとゲーム画面が展開されます。音量を確認して準備が整ったら冒険へ旅立ちましょう！</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
