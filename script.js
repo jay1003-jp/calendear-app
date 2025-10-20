@@ -1,48 +1,38 @@
-const video = document.getElementById("backgroundVideo");
-const overlay = document.getElementById("overlay");
-const startButton = document.getElementById("startGameButton");
-const infoButton = document.getElementById("infoButton");
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ゲームスタート画面</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="hero">
+    <video
+      id="backgroundVideo"
+      class="hero__video"
+      src="download.MP4"
+      preload="auto"
+      muted
+      playsinline
+    ></video>
 
-function freezeOnFirstFrame() {
-  if (!video) return;
+    <div class="hero__overlay" id="overlay">
+      <header class="hero__header">
+        <h1 class="hero__title">今日のチャレンジへようこそ</h1>
+        <p class="hero__subtitle">扉の向こうに広がる冒険を始めましょう。</p>
+      </header>
 
-  video.pause();
-  video.currentTime = 0;
-  video.style.opacity = "1";
-}
+      <div class="hero__buttons">
+        <button id="startGameButton" class="hero__button hero__button--primary">ゲーム開始</button>
+        <button id="infoButton" class="hero__button hero__button--ghost" type="button">遊び方</button>
+      </div>
 
-if (video.readyState >= 2) {
-  freezeOnFirstFrame();
-} else {
-  video.addEventListener("loadeddata", freezeOnFirstFrame, { once: true });
-}
+      <div class="hero__info" id="infoPanel">
+        <p>開始ボタンを押すとゲーム画面が展開されます。音量を確認して準備が整ったら冒険へ旅立ちましょう！</p>
+      </div>
+    </div>
+  </main>
 
-startButton.addEventListener("click", () => {
-  overlay.classList.remove("show-info");
-  overlay.classList.add("is-hidden");
-
-  if (!video) {
-    return;
-  }
-
-  video.removeAttribute("muted");
-  video.muted = false;
-  const playPromise = video.play();
-
-  if (playPromise instanceof Promise) {
-    playPromise.catch(() => {
-      // If playback fails (e.g., autoplay restrictions), keep the video muted and retry.
-      video.setAttribute("muted", "");
-      video.muted = true;
-      video.play().catch(() => {
-        // no-op, user interaction already happened so this should rarely fail
-      });
-    });
-  }
-});
-
-if (infoButton) {
-  infoButton.addEventListener("click", () => {
-    overlay.classList.toggle("show-info");
-  });
-}
+  <script src="script.js"></script>
+</body>
+</html>
