@@ -1,29 +1,36 @@
 const startButton = document.getElementById("startButton");
+const howToButton = document.getElementById("howToButton");
 const bgVideo = document.getElementById("bgVideo");
 const whiteout = document.getElementById("whiteout");
-const introScreen = document.getElementById("introScreen");
-const gameScreen = document.getElementById("gameScreen");
+const popup = document.getElementById("popup");
+const closePopup = document.getElementById("closePopup");
 
+// 🎮 ゲーム開始ボタン
 startButton.addEventListener("click", () => {
-  // 背景動画をリセットして再生（ホワイトアウト付きの完全版）
   bgVideo.currentTime = 0;
+  bgVideo.loop = false; // ✅ 一回だけ再生
   bgVideo.play();
 
-  // ボタンを非表示
-  startButton.classList.add("hidden");
-
-  // 動画の再生終了を監視
+  // 再生終了時のホワイトアウト
   bgVideo.addEventListener("ended", () => {
-    // ホワイトアウト開始
     whiteout.classList.remove("hidden");
-    whiteout.style.opacity = "1";
-
-    // 白フェードが終わったら次画面へ遷移
     setTimeout(() => {
-      introScreen.classList.add("hidden");
-      whiteout.style.opacity = "0";
-      whiteout.classList.add("hidden");
-      gameScreen.classList.remove("hidden");
-    }, 2000); // 白フェード後2秒で切り替え
+      whiteout.style.opacity = "1";
+    }, 100);
+
+    // ホワイトアウト後に遷移（例：別ページや新しい要素表示）
+    setTimeout(() => {
+      alert("次の画面へ！✨（ここに遷移処理を追加）");
+    }, 2500);
   });
+});
+
+// ❔ 遊び方ボタン
+howToButton.addEventListener("click", () => {
+  popup.classList.remove("hidden");
+});
+
+// 閉じるボタン
+closePopup.addEventListener("click", () => {
+  popup.classList.add("hidden");
 });
